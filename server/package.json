@@ -4,20 +4,25 @@
   "description": "Server for SEPER app",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "app": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "cd ../frontend && npm run build",
+    "install-frontend": "cd ../frontend && npm install",
+    "heroku-postbuild": "npm run install-frontend && npm run build",
+    "server": "nodemon app.js",
+    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix ../frontend\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix ../frontend\""
   },
   "author": "Team 505",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "concurrently": "^6.2.1",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^6.0.5",
+    "nodemon": "^2.0.12",
     "validation": "0.0.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
   }
 }
