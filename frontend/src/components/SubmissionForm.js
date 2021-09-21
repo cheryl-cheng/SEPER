@@ -8,13 +8,34 @@ const SubmissionForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-    
       <input {...register("title")} placeholder="Title" />
-      <p><input {...register("authors")} placeholder="Authors" /></p>
-      <p><input {...register("source")} placeholder="Source" /></p> 
-      <p><input {...register("pubyear")} placeholder="Publication Year" /></p>
-      <p><input {...register("doi")} placeholder="DOI" /></p>
-     
+      <p>
+        <input {...register("authors")} placeholder="Author(s)" />
+      </p>
+      <p>
+        <input {...register("source")} placeholder="Journal Name" />
+      </p>
+      <p>
+        <input
+          type="number"
+          {...register("pubyear")}
+          placeholder="Publication Year"
+        />
+      </p>
+      <p>
+        <input {...register("volume")} placeholder="Volume" />
+      </p>
+      <p>
+        <input
+          type="number"
+          {...register("pubyear")}
+          placeholder="Number of pages"
+        />
+      </p>
+      <p>
+        <input {...register("doi")} placeholder="DOI" />
+      </p>
+
       <select {...register("sepractice")}>
         <option value="">Select SE practice...</option>
         <option value="TDD">TDD</option>
@@ -25,5 +46,5 @@ const SubmissionForm = () => {
       <input type="submit" />
     </form>
   );
-}
+};
 export default SubmissionForm;
