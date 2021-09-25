@@ -2,7 +2,10 @@ const tablecolumns = [
     {
       Header: 'Title',
       accessor: 'title'
-    }, {
+    },{
+      Header: 'Practice',
+      accessor: 'practice'
+    },{
       Header: 'Authors',
       accessor: 'authors'
     }, {
