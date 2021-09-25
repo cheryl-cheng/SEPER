@@ -1,29 +1,39 @@
+import { ColumnFilter } from './ColumnFilter'
+
 const tablecolumns = [
     {
       Header: 'Title',
-      accessor: 'title'
+      accessor: 'title',
+      Filter: ColumnFilter
     },{
       Header: 'Practice',
-      accessor: 'practice'
+      accessor: 'practice',
+      Filter: ColumnFilter
     },{
       Header: 'Authors',
       accessor: 'authors'
-    }, {
+    },{
       Header: 'Source',
-      accessor: 'source'
-    }, {
+      accessor: 'source',
+      Filter: ColumnFilter
+    },{
       Header: 'Pub. Year',
-      accessor: 'pubyear'
+      accessor: 'pubyear',
+      Filter: ColumnFilter
     },{
       Header: 'DOI',
-      accessor: 'doi'
-    },,{
+      accessor: 'doi',
+      Filter: ColumnFilter
+    },{
       Header: 'Claimed Benefit',
-      accessor: 'claim'
+      accessor: 'claim',
+      Filter: ColumnFilter
     },{
       Header: 'Level of Evidence',
-      accessor: 'evidence'
+      accessor: 'evidence',
+      Filter: ColumnFilter
     }
   ]
 
-  module.exports = tablecolumns
+  export default tablecolumns;
+  //module.exports = tablecolumns
