@@ -1,8 +1,16 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
-import { useTable, useSortBy, usePagination } from 'react-table';
+import { useTable, useSortBy, usePagination, useFilters } from 'react-table';
+import { ColumnFilter } from './ColumnFilter'
 
 const Table = ({columns, data}) => {
+
+const defaultColumn = useMemo(() => {
+  return {
+    Filter: ColumnFilter
+  }
+}, [])
+
 const {
     getTableProps,
     getTableBodyProps,
@@ -26,9 +34,10 @@ const {
     {
       columns,
       data,
+      defaultColumn,
       initialState: { pageIndex: 0 },
     },
-    
+    useFilters,
     useSortBy,
     usePagination
   )
@@ -46,6 +55,9 @@ const {
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   {/* Add a sort direction indicator */}
+                  <div>
+                    {column.canFilter ? column.render('Filter') : null}
+                  </div>
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc

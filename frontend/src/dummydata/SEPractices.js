@@ -5,7 +5,7 @@ const SEPractices = [
     },
     {
       id: 2,
-      practice: 'Mob programming',
+      practice: 'Mob Programming',
     },
    
   ];
