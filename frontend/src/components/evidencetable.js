@@ -1,13 +1,12 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
 import { useTable, useSortBy, usePagination, useFilters } from 'react-table';
-import { ColumnFilter } from './ColumnFilter'
 
 const Table = ({columns, data}) => {
 
 const defaultColumn = useMemo(() => {
   return {
-    Filter: ColumnFilter
+    
   }
 }, [])
 
