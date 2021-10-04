@@ -59,7 +59,6 @@ const SubmissionForm = () => {
           {...register("volume")}
         />
         <TextField
-          type="number"
           id="suggestion-pages"
           label="Pages"
           {...register("numpages")}
