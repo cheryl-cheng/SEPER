@@ -9,3 +9,11 @@ export const submitArticleSuggestion = (articleData) => {
     axios.post(db.prod + "/api/submit-suggestion", articleData);
   }
 };
+
+export const createArticle = (articleData) => {
+  if (process.env.NODE_ENV === "development") {
+    axios.post(db.dev + "/api/create-artcle", articleData);
+  } else {
+    axios.post(db.prod + "/api/create-artcle", articleData);
+  }
+};
