@@ -34,7 +34,10 @@ const {
       columns,
       data,
       defaultColumn,
-      initialState: { pageIndex: 0 },
+      initialState: { 
+        pageIndex: 0,
+        hiddenColumns:["practice"]
+      },
     },
     useFilters,
     useSortBy,
@@ -54,9 +57,6 @@ const {
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   {/* Add a sort direction indicator */}
-                  <div>
-                    {column.canFilter ? column.render('Filter') : null}
-                  </div>
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc

@@ -1,46 +1,68 @@
-import { ColumnFilter } from './ColumnFilter'
+import { SortFilter } from "./SortFilter";
 
 const tablecolumns = [
     {
-      Header: 'Title',
-      accessor: 'title',
-      Filter: ColumnFilter,
-      disableFilters: true
-    },{
-      Header: 'Practice',
-      accessor: 'practice',
-      Filter: ColumnFilter
-    },{
-      Header: 'Authors',
-      accessor: 'authors',
-      Filter: ColumnFilter,
-      disableFilters: true
-    },{
-      Header: 'Source',
-      accessor: 'source',
-      Filter: ColumnFilter,
-      disableFilters: true
-    },{
-      Header: 'Pub. Year',
-      accessor: 'pubyear',
-      Filter: ColumnFilter,
-    },{
-      Header: 'DOI',
-      accessor: 'doi',
-      Filter: ColumnFilter,
-      disableFilters: true
-    },{
-      Header: 'Claimed Benefit',
-      accessor: 'claim',
-      Filter: ColumnFilter,
-      disableFilters: true
-    },{
-      Header: 'Level of Evidence',
-      accessor: 'evidence',
-      Filter: ColumnFilter,
-      disableFilters: true
-    }
+      Header: 'SEPER',
+      columns: [
+        {
+          Header: 'Title',
+          accessor: 'title',   
+        },
+        {
+          Header: 'Practice',
+          accessor: 'practice',
+          show: false,
+          filterable: true,
+          filterMethod: (filter, row) => {
+            if (filter.value === "all") {
+              return true;
+            }
+            if (filter.value === "TDD") {
+              return row[filter.id] === "TDD";
+            }
+            if (filter.value === "Mob Programming") {
+              return row[filter.id] === "Mob Programming";
+            }
+          },
+          Filter: SortFilter
+        },
+      ], 
+    },
+    {
+      Header: 'Year Filter',
+      columns: [
+        {
+          Header: 'Authors',
+          accessor: 'authors',
+        },
+        {
+          Header: 'Source',
+          accessor: 'source',
+        },
+        {
+          Header: 'Pub. Year',
+          accessor: 'pubyear',
+        },
+      ],
+    },
+    {
+      Header: 'Practice Filter',
+      columns: [
+        {
+          Header: 'DOI',
+          accessor: 'doi',
+        },
+        {
+          Header: 'Claimed Benefit',
+          accessor: 'claim',
+        },
+        {
+          Header: 'Level of Evidence',
+          accessor: 'evidence',
+        },
+      ],
+    },
+    
   ]
 
   export default tablecolumns;
-  //module.exports = tablecolumns
