@@ -1,6 +1,7 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
-import { useTable, useSortBy, usePagination, useFilters } from 'react-table';
+import { GlobalFilter } from "./GlobalFilter.js";
+import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
 
 const Table = ({columns, data}) => {
 
@@ -28,7 +29,9 @@ const {
     nextPage,
     previousPage,
     setPageSize,
+    setGlobalFilter,
     state: { pageIndex, pageSize },
+    state,
   } = useTable(
     {
       columns,
@@ -39,14 +42,17 @@ const {
         hiddenColumns:["practice"]
       },
     },
-    useFilters,
+    useGlobalFilter,
     useSortBy,
     usePagination
   )
 
+  const { globalFilter } = state
+
   // Render Data Table UI
   return (
     <>
+      <GlobalFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (

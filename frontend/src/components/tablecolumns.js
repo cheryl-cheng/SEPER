@@ -1,5 +1,3 @@
-import { SortFilter } from "./SortFilter";
-
 const tablecolumns = [
     {
       Header: 'SEPER',
@@ -11,20 +9,6 @@ const tablecolumns = [
         {
           Header: 'Practice',
           accessor: 'practice',
-          show: false,
-          filterable: true,
-          filterMethod: (filter, row) => {
-            if (filter.value === "all") {
-              return true;
-            }
-            if (filter.value === "TDD") {
-              return row[filter.id] === "TDD";
-            }
-            if (filter.value === "Mob Programming") {
-              return row[filter.id] === "Mob Programming";
-            }
-          },
-          Filter: SortFilter
         },
       ], 
     },
