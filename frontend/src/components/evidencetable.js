@@ -29,6 +29,7 @@ const {
     nextPage,
     previousPage,
     setPageSize,
+    setSortBy,
     setGlobalFilter,
     state: { pageIndex, pageSize },
     state,
@@ -39,7 +40,7 @@ const {
       defaultColumn,
       initialState: { 
         pageIndex: 0,
-        hiddenColumns:["practice"]
+        hiddenColumns:["practice"],
       },
     },
     useGlobalFilter,
@@ -47,21 +48,35 @@ const {
     usePagination
   )
 
-  const { globalFilter } = state
+  const { globalFilter } = state;
+
+  const sortBy = [{ id: "title" }, { id: "authors" }, { id: "source" }, { id: "pubyear" }, { id: "doi" }, { id: "claim" }, { id: "evidence" }];
 
   // Render Data Table UI
   return (
     <>
       <GlobalFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
       <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
+      <thead>
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 // Add the sorting props to control sorting. For this example
                 // we can add them into the header props
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
+                <th
+                  {...column.getHeaderProps()}
+                  onClick={() => {
+                    //set sort desc, aesc or none?
+                    const desc =
+                      column.isSortedDesc === true
+                        ? undefined
+                        : column.isSortedDesc === false
+                        ? true
+                        : false;
+                    setSortBy([{ id: column.id, desc }, ...sortBy]);
+                  }}
+                >
+                  {column.render("Header")}
                   {/* Add a sort direction indicator */}
                   <span>
                     {column.isSorted
@@ -138,5 +153,6 @@ const {
 
   )
 };
+
   
   export default Table;
