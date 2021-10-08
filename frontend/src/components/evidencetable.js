@@ -2,6 +2,7 @@ import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
 import { GlobalFilter } from "./GlobalFilter.js";
 import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
+import { Checkbox } from './checkbox';
 
 const Table = ({columns, data}) => {
 
@@ -30,6 +31,8 @@ const {
     previousPage,
     setPageSize,
     setSortBy,
+    allColumns,
+    getToggleHideAllColumnsProps,
     setGlobalFilter,
     state: { pageIndex, pageSize },
     state,
@@ -55,7 +58,29 @@ const {
   // Render Data Table UI
   return (
     <>
+      <h2 align="center">SE Practice Evidence</h2>
+      <h4 align='center'>Select an SE Practice to show evidence for:</h4>
       <GlobalFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
+      <div>
+      <h4 align='Left'>Toggle columns:</h4>
+        <div>
+            <Checkbox {...getToggleHideAllColumnsProps()} />Toggle
+            All
+        </div>
+        {
+          allColumns.map(column => (
+            <div key = {column.id}>
+            {column.Header !== 'Practice' &&
+              <label>
+                <input type = 'checkbox' {...column.getToggleHiddenProps()}/>
+                {column.Header}
+              </label>
+            }
+            </div>
+          ))
+      }
+      <br/>
+    </div>
       <table {...getTableProps()}>
       <thead>
           {headerGroups.map((headerGroup) => (

@@ -4,7 +4,7 @@ const tablecolumns = [
       columns: [
         {
           Header: 'Title',
-          accessor: 'title',   
+          accessor: 'title',
         },
         {
           Header: 'Practice',
