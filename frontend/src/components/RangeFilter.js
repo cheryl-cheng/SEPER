@@ -16,7 +16,8 @@ export const RangeFilter = ({ column }) => {
     return (
         <span>
             <input
-                value={filterValue[0] || ''}
+                //value={filterValue[0] || ''}
+                defaultValue = {min}
                 type="number"
                 onChange={e => {
                     const val = e.target.value
@@ -30,8 +31,9 @@ export const RangeFilter = ({ column }) => {
             />
             to
             <input
-                value={filterValue[1] || ''}
+                //value={filterValue[1] || ''}
                 type="number"
+                defaultValue = {max}
                 onChange={e => {
                     const val = e.target.value
                     setFilter((old = []) => [old[0], val ? parseInt(val, 10) : undefined])
