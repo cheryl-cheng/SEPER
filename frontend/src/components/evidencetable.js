@@ -1,13 +1,13 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
-import { useTable, useSortBy, usePagination, useFilters } from 'react-table';
-import { ColumnFilter } from './ColumnFilter'
+import { PracticeFilter } from "./PracticeFilter.js";
+import { useTable, useSortBy, usePagination, useGlobalFilter, } from 'react-table';
 
 const Table = ({columns, data}) => {
 
 const defaultColumn = useMemo(() => {
   return {
-    Filter: ColumnFilter
+    
   }
 }, [])
 
@@ -29,22 +29,31 @@ const {
     nextPage,
     previousPage,
     setPageSize,
+    setGlobalFilter,
     state: { pageIndex, pageSize },
+    state,
   } = useTable(
     {
       columns,
       data,
       defaultColumn,
-      initialState: { pageIndex: 0 },
+      initialState: { 
+        pageIndex: 0,
+        hiddenColumns:["practice"],
+        globalFilter:["TDD"]
+      },
     },
-    useFilters,
+    useGlobalFilter,
     useSortBy,
     usePagination
   )
 
+  const { globalFilter } = state
+
   // Render Data Table UI
   return (
     <>
+      <PracticeFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
@@ -55,9 +64,6 @@ const {
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   {/* Add a sort direction indicator */}
-                  <div>
-                    {column.canFilter ? column.render('Filter') : null}
-                  </div>
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc
