@@ -1,13 +1,14 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
 import { PracticeFilter } from "./PracticeFilter.js";
-import { useTable, useSortBy, usePagination, useGlobalFilter, } from 'react-table';
+import { useTable, useSortBy, usePagination, useGlobalFilter, useFilters } from 'react-table';
+import { RangeFilter } from "./RangeFilter.js";
 
 const Table = ({columns, data}) => {
 
 const defaultColumn = useMemo(() => {
   return {
-    
+    Filter: RangeFilter,
   }
 }, [])
 
@@ -37,12 +38,14 @@ const {
       columns,
       data,
       defaultColumn,
+      autoResetFilters: false,
       initialState: { 
         pageIndex: 0,
         hiddenColumns:["practice"],
         globalFilter:["TDD"]
       },
     },
+    useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination
@@ -64,6 +67,9 @@ const {
                 <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                   {column.render('Header')}
                   {/* Add a sort direction indicator */}
+                  <div>
+                    {column.canFilter ? column.render('Filter') : null}
+                  </div>
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc
