@@ -54,24 +54,16 @@ const SubmissionForm = () => {
           {...register("pubyear")}
         />
         <TextField
-          required
           id="suggestion-volume"
           label="Volume"
           {...register("volume")}
         />
         <TextField
-          required
-          type="number"
           id="suggestion-pages"
-          label="Number of pages"
+          label="Pages"
           {...register("numpages")}
         />
-        <TextField
-          required
-          id="suggestion-doi"
-          label="DOI"
-          {...register("doi")}
-        />
+        <TextField id="suggestion-doi" label="DOI" {...register("doi")} />
         <InputLabel id="practice-label">SE Practice *</InputLabel>
         <Select
           required
