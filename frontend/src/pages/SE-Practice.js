@@ -1,13 +1,23 @@
-import articles from "../dummydata/articles.js";
+import React, { useEffect, useState } from "react";
+// import articles from "../dummydata/articles.js";
 import Styles from "../components/tablestyle.js";
 import Table from "../components/evidencetable.js";
 import tablecolumns from "../components/tablecolumns.js";
+import Dropdown from "../components/Dropdown.js";
+import { getArticles } from "../api/Article.js";
 
 const SEPractice = () => {
-  const createArticles = () => {
-    var myObject = JSON.parse(articles);
-    console.log(myObject);
-  };
+  const [articles, setArticles] = useState();
+
+  useEffect(() => {
+    getArticles().then((newArticles) => {
+      setArticles(newArticles);
+    });
+  }, []);
+
+  if (!articles) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
@@ -16,7 +26,6 @@ const SEPractice = () => {
       <Styles>
         <Table data={articles} columns={tablecolumns} />
       </Styles>
-      <button onClick={() => createArticles()}>Create articles</button>
     </div>
   );
 };

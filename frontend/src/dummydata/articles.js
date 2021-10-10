@@ -1,6 +1,5 @@
 const articles = [
   {
-    _id: "1",
     title:
       "An experimental evaluation of test driven development vs. test-last development with industry professionals",
     authors: "Munir, H., Wnuk, K., Petersen, K., Moayyed, M.",
@@ -12,7 +11,6 @@ const articles = [
     practice: "TDD",
   },
   {
-    _id: "2",
     title:
       "An experimental evaluation of test driven development vs. test-last development with industry professionals",
     authors: "Munir, H., Wnuk, K., Petersen, K., Moayyed, M.",
@@ -24,7 +22,6 @@ const articles = [
     practice: "TDD",
   },
   {
-    _id: "3",
     title:
       "Realizing quality improvement through test driven development: results and experiences of four industrial teams",
     authors: "Nagappan, N., Maximilien, E. M., Bhat, T., Williams, L.",
@@ -36,7 +33,6 @@ const articles = [
     practice: "TDD",
   },
   {
-    _id: "4",
     title:
       "Does Test-Driven Development Really Improve Software Design Quality?",
     authors: "Janzen, D. S.",
@@ -48,7 +44,6 @@ const articles = [
     practice: "TDD",
   },
   {
-    _id: "5",
     title:
       "A Comparative Case Study on the Impact of Test-Driven Development on Program Design and Test Coverage",
     authors: "Siniaalto, M., Abrahamsson, P.",
@@ -60,7 +55,6 @@ const articles = [
     practice: "TDD",
   },
   {
-    _id: "6",
     title:
       "Driving Software Quality: How Mob Programming Impacts Software Quality.",
     authors: "Williams, L., Maximilien, E. M. & Vouk, M.",
@@ -73,7 +67,6 @@ const articles = [
     practice: "Mob Programming",
   },
   {
-    _id: "7",
     title: "Mob Programming as a Defect-Reduction Practice. ",
     authors: "Crispin, L.",
     source: "IEEE Software, 23(6), 70–71.",
@@ -84,7 +77,6 @@ const articles = [
     practice: "Mob Programming",
   },
   {
-    _id: "8",
     title:
       "An Empirical Study of Mob Programming vs. Single Development Using Eye Tracking.",
     authors:
