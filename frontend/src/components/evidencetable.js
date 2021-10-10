@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
-import { GlobalFilter } from "./GlobalFilter.js";
-import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
+import { PracticeFilter } from "./PracticeFilter.js";
+import { useTable, useSortBy, usePagination, useGlobalFilter, } from 'react-table';
 
 const Table = ({columns, data}) => {
 
@@ -41,6 +41,7 @@ const {
       initialState: { 
         pageIndex: 0,
         hiddenColumns:["practice"],
+        globalFilter:["TDD"]
       },
     },
     useGlobalFilter,
@@ -55,7 +56,7 @@ const {
   // Render Data Table UI
   return (
     <>
-      <GlobalFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
+      <PracticeFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
       <table {...getTableProps()}>
       <thead>
           {headerGroups.map((headerGroup) => (
