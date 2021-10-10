@@ -1,14 +1,15 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
-import { GlobalFilter } from "./GlobalFilter.js";
-import { useTable, useSortBy, usePagination, useGlobalFilter } from 'react-table';
+import { PracticeFilter } from "./PracticeFilter.js";
+import { useTable, useSortBy, usePagination, useGlobalFilter, useFilters } from 'react-table';
+import { RangeFilter } from "./RangeFilter.js";
 import { Checkbox } from './checkbox';
 
 const Table = ({columns, data}) => {
 
 const defaultColumn = useMemo(() => {
   return {
-    
+    Filter: RangeFilter,
   }
 }, [])
 
@@ -41,11 +42,14 @@ const {
       columns,
       data,
       defaultColumn,
+      autoResetFilters: false,
       initialState: { 
         pageIndex: 0,
         hiddenColumns:["practice"],
+        globalFilter:["TDD"]
       },
     },
+    useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination
@@ -60,7 +64,7 @@ const {
     <>
       <h2 align="center">SE Practice Evidence</h2>
       <h4 align='center'>Select an SE Practice to show evidence for:</h4>
-      <GlobalFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
+      <PracticeFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
       <div>
       <h4 align='Left'>Toggle columns:</h4>
         <div>
@@ -103,6 +107,9 @@ const {
                 >
                   {column.render("Header")}
                   {/* Add a sort direction indicator */}
+                  <div>
+                    {column.canFilter ? column.render('Filter') : null}
+                  </div>
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc

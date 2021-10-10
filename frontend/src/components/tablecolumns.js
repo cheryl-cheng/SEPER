@@ -1,52 +1,40 @@
+import { RangeFilter } from "./RangeFilter";
+
 const tablecolumns = [
-    {
-      Header: 'SEPER',
-      columns: [
-        {
-          Header: 'Title',
-          accessor: 'title',
-        },
-        {
-          Header: 'Practice',
-          accessor: 'practice',
-        },
-      ], 
-    },
-    {
-      Header: 'Year Filter',
-      columns: [
-        {
-          Header: 'Authors',
-          accessor: 'authors',
-        },
-        {
-          Header: 'Source',
-          accessor: 'source',
-        },
-        {
-          Header: 'Pub. Year',
-          accessor: 'pubyear',
-        },
-      ],
-    },
-    {
-      Header: 'Practice Filter',
-      columns: [
-        {
-          Header: 'DOI',
-          accessor: 'doi',
-        },
-        {
-          Header: 'Claimed Benefit',
-          accessor: 'claim',
-        },
-        {
-          Header: 'Level of Evidence',
-          accessor: 'evidence',
-        },
-      ],
-    },
-    
-  ]
+  {
+    Header: 'Title',
+    accessor: 'title',
+    disableFilters: true,
+  },{
+    Header: 'Practice',
+    accessor: 'practice',
+    disableFilters: true,
+  },{
+    Header: 'Authors',
+    accessor: 'authors',
+    disableFilters: true,
+  },{
+    Header: 'Source',
+    accessor: 'source',
+    disableFilters: true,
+  },{
+    Header: 'Pub. Year',
+    accessor: 'pubyear',
+    Filter: RangeFilter,
+    filter: 'between',
+  },{
+    Header: 'DOI',
+    accessor: 'doi',
+    disableFilters: true,
+  },{
+    Header: 'Claimed Benefit',
+    accessor: 'claim',
+    disableFilters: true,
+  },{
+    Header: 'Level of Evidence',
+    accessor: 'evidence',
+    disableFilters: true,
+  }
+]
 
   export default tablecolumns;
