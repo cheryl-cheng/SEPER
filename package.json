@@ -16,6 +16,7 @@
   "author": "Team 505",
   "license": "ISC",
   "dependencies": {
+    "@mui/icons-material": "^5.0.1",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.1",
