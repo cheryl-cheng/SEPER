@@ -1,13 +1,15 @@
 import React, {useMemo} from "react";
 import articles from "../dummydata/articles.js";
 import { PracticeFilter } from "./PracticeFilter.js";
-import { useTable, useSortBy, usePagination, useGlobalFilter, } from 'react-table';
+import { useTable, useSortBy, usePagination, useGlobalFilter, useFilters } from 'react-table';
+import { RangeFilter } from "./RangeFilter.js";
+import { Checkbox } from './checkbox';
 
 const Table = ({columns, data}) => {
 
 const defaultColumn = useMemo(() => {
   return {
-    
+    Filter: RangeFilter,
   }
 }, [])
 
@@ -29,6 +31,9 @@ const {
     nextPage,
     previousPage,
     setPageSize,
+    setSortBy,
+    allColumns,
+    getToggleHideAllColumnsProps,
     setGlobalFilter,
     state: { pageIndex, pageSize },
     state,
@@ -37,33 +42,74 @@ const {
       columns,
       data,
       defaultColumn,
+      autoResetFilters: false,
       initialState: { 
         pageIndex: 0,
         hiddenColumns:["practice"],
         globalFilter:["TDD"]
       },
     },
+    useFilters,
     useGlobalFilter,
     useSortBy,
     usePagination
   )
 
-  const { globalFilter } = state
+  const { globalFilter } = state;
+
+  const sortBy = [{ id: "title" }, { id: "authors" }, { id: "source" }, { id: "pubyear" }, { id: "doi" }, { id: "claim" }, { id: "evidence" }];
 
   // Render Data Table UI
   return (
     <>
+      <h2 align="center">SE Practice Evidence</h2>
+      <h4 align='center'>Select an SE Practice to show evidence for:</h4>
       <PracticeFilter filter = {globalFilter} setFilter = { setGlobalFilter }/>
+      <div>
+      <h4 align='Left'>Toggle columns:</h4>
+        <div>
+            <Checkbox {...getToggleHideAllColumnsProps()} />Toggle
+            All
+        </div>
+        {
+          allColumns.map(column => (
+            <div key = {column.id}>
+            {column.Header !== 'Practice' &&
+              <label>
+                <input type = 'checkbox' {...column.getToggleHiddenProps()}/>
+                {column.Header}
+              </label>
+            }
+            </div>
+          ))
+      }
+      <br/>
+    </div>
       <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
+      <thead>
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 // Add the sorting props to control sorting. For this example
                 // we can add them into the header props
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render('Header')}
+                <th
+                  {...column.getHeaderProps()}
+                  onClick={() => {
+                    //set sort desc, aesc or none?
+                    const desc =
+                      column.isSortedDesc === true
+                        ? undefined
+                        : column.isSortedDesc === false
+                        ? true
+                        : false;
+                    setSortBy([{ id: column.id, desc }, ...sortBy]);
+                  }}
+                >
+                  {column.render("Header")}
                   {/* Add a sort direction indicator */}
+                  <div>
+                    {column.canFilter ? column.render('Filter') : null}
+                  </div>
                   <span>
                     {column.isSorted
                       ? column.isSortedDesc
@@ -139,5 +185,6 @@ const {
 
   )
 };
+
   
   export default Table;
