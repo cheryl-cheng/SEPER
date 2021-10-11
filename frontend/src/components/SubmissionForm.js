@@ -6,7 +6,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Select from "@mui/material/Select";
 
 import { useForm } from "react-hook-form";
@@ -215,7 +214,6 @@ const SubmissionForm = () => {
           </p>
           <Accordion>
             <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
