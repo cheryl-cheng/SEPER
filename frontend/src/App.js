@@ -25,7 +25,7 @@ const App = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/SEPractice">Select the Practice</NavLink>
+              <NavLink to="/SEPractice">View Articles</NavLink>
             </li>
             <li>
               <NavLink to="/SubmitArticle">Submit an Article</NavLink>
