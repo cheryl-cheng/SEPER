@@ -8,9 +8,11 @@ const SEPractice = () => {
   const [articles, setArticles] = useState();
 
   useEffect(() => {
-    getArticles().then((newArticles) => {
-      setArticles(newArticles);
-    });
+    if (!articles) {
+      getArticles().then((newArticles) => {
+        setArticles(newArticles);
+      });
+    }
   }, []);
 
   if (!articles) {
