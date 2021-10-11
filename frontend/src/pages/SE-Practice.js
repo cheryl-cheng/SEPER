@@ -13,9 +13,10 @@ const SEPractice = () => {
         setArticles(newArticles);
       });
     }
-  }, []);
+  }, [articles]);
 
   if (!articles) {
+    console.log("loading");
     return <p>Loading...</p>;
   } else {
     console.log(articles);

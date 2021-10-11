@@ -5,7 +5,7 @@
   "main": "app.js",
   "proxy": "https://seper-mern-app.herokuapp.com",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd frontend && npm test",
     "build": "cd frontend && npm run build",
     "install-frontend": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-frontend && npm run build",
