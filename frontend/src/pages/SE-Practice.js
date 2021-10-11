@@ -13,7 +13,7 @@ const SEPractice = () => {
         setArticles(newArticles);
       });
     }
-  }, [articles]);
+  }, []);
 
   if (!articles) {
     console.log("loading");

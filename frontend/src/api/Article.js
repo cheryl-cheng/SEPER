@@ -26,6 +26,10 @@ export const getArticles = async () => {
     });
     return data;
   } else {
-    await axios.get(db.prod + "/api/get-articles");
+    let data = [];
+    await axios.get(db.prod + "/api/get-articles").then((body) => {
+      data = body.data;
+    });
+    return data;
   }
 };
